@@ -1,0 +1,4 @@
+web:      rails s
+spork:    spork
+autotest: autotest --fast-start
+

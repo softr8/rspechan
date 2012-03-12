@@ -1,0 +1,13 @@
+== Welcome to RspeChan
+Rspechan is yet another CI server, but this is designed from scratch in clustering environment,
+it uses resque technology to spread tests across multiples nodes.
+
+
+== Development
+When coding new features and fixing my bugs, just start foreman and you're all set
+
+    foreman start
+
+* If you're using rubymine, be sure to specify rubymine home in your .bashrc/.bash_profile:
+
+    export RUBYMINE_HOME=/Users/user/RubyMine\ EAP.app/

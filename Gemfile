@@ -1,0 +1,33 @@
+source 'https://rubygems.org'
+
+gem 'rails', '3.2.2'
+
+gem 'capistrano'
+gem "haml-rails"
+gem 'jquery-rails'
+gem 'mysql2'
+gem 'resque'
+gem 'resque-loner'
+gem 'state_machine'
+gem 'unicorn'
+
+group :assets do
+  gem 'bootstrap-sass', '~> 2.0.1'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'therubyracer'
+  gem 'uglifier', '>= 1.0.3'
+end
+
+group :development, :test do
+  gem 'autotest-rails'
+  gem 'autotest-growl'
+  gem 'factory_girl'
+  gem 'foreman'
+  gem 'rspec-rails'
+  gem 'spork'
+end
+
+
+# To use debugger
+# gem 'ruby-debug19', :require => 'ruby-debug'

@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>State:</b>
+  <%= @build.state %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @build.project_id %>
+</p>
+
+<%= link_to 'Back', project_builds_path(project_id: @build.project_id) %>
