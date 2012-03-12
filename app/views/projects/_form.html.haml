@@ -1,0 +1,27 @@
+= form_for(@project, html: {class: 'well form-horizontal'}) do |f|
+  - if @project.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@project.errors.count, "error")
+        prohibited this project from being saved:
+      %ul
+        - @project.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :repo
+    %br/
+    = f.text_field :repo
+  .field
+    = f.label :description
+    %br/
+    = f.text_area :description
+  .field
+    = f.label :ruby_version
+    %br/
+    = f.text_field :ruby_version
+  .actions
+    = f.submit

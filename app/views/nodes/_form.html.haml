@@ -1,0 +1,22 @@
+= form_for @node do |f|
+  -if @node.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@node.errors.count, "error")} prohibited this node from being saved:"
+      %ul
+        - @node.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :ip
+    = f.text_field :ip
+  .field
+    = f.label :status
+    = f.text_field :status
+  .field
+    = f.label :max_workers
+    = f.number_field :max_workers
+  .actions
+    = f.submit 'Save'

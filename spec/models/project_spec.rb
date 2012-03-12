@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Project do
-  let(:project) { Factory(:project)}
+  let(:project) { Factory(:project) }
 
   describe ".latest_feed" do
-    let(:build1) { Factory(:build, project: project)}
-    let(:build2) { Factory(:build, project: project)}
+    let(:build1) { Factory(:build, project: project) }
+    let(:build2) { Factory(:build, project: project) }
 
     it "returns empty if no builds yet" do
       Project.latest_built.size.should == 0

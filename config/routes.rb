@@ -1,4 +1,6 @@
 Rspechan::Application.routes.draw do
+  resources :nodes
+
   resources :projects do
     resources :builds, only: [:index, :show] do
       collection do

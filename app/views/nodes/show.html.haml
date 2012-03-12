@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @node.name
+%p
+  %b Ip:
+  = @node.ip
+%p
+  %b Status:
+  = @node.status
+%p
+  %b Max workers:
+  = @node.max_workers
+
+= link_to 'Edit', edit_node_path(@node)
+\|
+= link_to 'Back', nodes_path
