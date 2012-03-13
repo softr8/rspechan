@@ -3,11 +3,13 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 
 gem 'capistrano'
+gem 'capistrano-ext'
 gem "haml-rails"
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'resque'
 gem 'resque-loner'
+gem 'rvm'
 gem 'state_machine'
 gem 'unicorn'
 

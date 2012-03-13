@@ -24,7 +24,7 @@ describe NodesController do
   # Node. As you add validations to Node, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    { ip: "10.10.#{rand(254)}.#{rand(254)}" }
   end
   
   # This should return the minimal set of values that should be in the session

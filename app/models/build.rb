@@ -4,10 +4,9 @@ class Build < ActiveRecord::Base
 
   delegate :name, to: :project, prefix: :project
 
-  state_machine :state, initial: :enqueued do
+  state_machine :status, initial: :enqueued do
     after_transition on: :enqueued, do: :enqueue_build
   end
-
 
   private
   def enqueue_build
