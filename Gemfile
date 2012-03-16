@@ -8,7 +8,6 @@ gem "haml-rails"
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'resque'
-gem 'resque-loner'
 gem 'rvm'
 gem 'state_machine'
 gem 'unicorn'

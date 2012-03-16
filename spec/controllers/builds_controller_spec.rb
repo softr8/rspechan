@@ -1,13 +1,14 @@
 require 'spec_helper'
 
 describe BuildsController do
+  let(:project) { Factory(:project)}
 
   def valid_attributes
-    {}
+    { project_id: project.id }
   end
   
   def valid_session
-    {}
+    { }
   end
 
   describe "GET index" do

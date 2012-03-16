@@ -12,8 +12,9 @@ Dir["#{File.dirname(__FILE__)}/../app/models/*.rb"].each { |fn| require fn }
 require "rvm/capistrano"
 require "bundler/capistrano"
 
-@project = Project.find_by_id(ENV['PROJECT_ID'])
-raise 'PROJECT NOT FOUND' unless @project
+_cset :project_id, 0
+@project = Project.find_by_id(project_id)
+raise "PROJECT NOT FOUND #{project_id}" unless @project
 
 set :application, @project.name.gsub(' ', '_')
 set :repository,  @project.repo
@@ -49,6 +50,8 @@ namespace :build do
     deploy.symlink
     db.create rescue nil
     db.migrate
+    utils.write_app_name
+    #resque:enqueue_specs
     #resque:start_client
   end
 end
@@ -68,5 +71,11 @@ namespace :deploy do
     task :setup do
       run "cd #{shared_path} && mkdir -p bundle"
     end
+  end
+end
+
+namespace :utils do
+  task :write_app_name do
+    run "echo #{application} > #{current_release}/APPLICATION_NAME"
   end
 end
