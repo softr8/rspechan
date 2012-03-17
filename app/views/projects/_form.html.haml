@@ -22,6 +22,6 @@
   .field
     = f.label :ruby_version
     %br/
-    = f.text_field :ruby_version
+    = f.select :ruby_id, options_for_select(Ruby.availables.collect {|ruby| [ruby.name, ruby.id]})
   .actions
     = f.submit

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe DashboardController do
-  let(:project1) { Factory(:project, repo: "repo#{Time.zone.now.to_i}@git.com") }
-  let(:project2) { Factory(:project, repo: "repo#{Time.zone.now.to_i + 1}@git.com") }
+  let(:project1) { Project.find_by_name('fulcrum') }
+  let(:project2) { Project.find_by_name('blog') }
 
   before do
     OrganizationHelper.default_id = 1

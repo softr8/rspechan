@@ -13,7 +13,7 @@
       %td= project.name
       %td= project.repo
       %td= project.description
-      %td= project.ruby_version
+      %td= project.ruby.name
       %td= link_to 'Show', organization_project_path(OrganizationHelper.default_id, project.id)
       %td= link_to 'Edit', edit_organization_project_path(OrganizationHelper.default_id, project.id)
       %td= link_to 'Destroy', organization_project_path(OrganizationHelper.default_id, project.id), confirm: 'Are you sure?', method: :delete

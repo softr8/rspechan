@@ -1,4 +1,6 @@
 Rspechan::Application.routes.draw do
+  namespace :admin do resources :rubies end
+
   resources :nodes
 
   resources :organizations do

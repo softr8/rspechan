@@ -7,11 +7,12 @@ describe "projects/edit" do
       :repo => "MyString",
       :organization_id => 1,
       :description => "MyText",
-      :ruby_version => "MyString"
+      :ruby_id => 1
     ))
     @organization = assign(:organization, stub_model(Organization,
                                                id: 1,
                                                name: 'Crowd interactive'))
+    OrganizationHelper.default_id = 1
   end
 
 
@@ -23,7 +24,7 @@ describe "projects/edit" do
       assert_select "input#project_name", :name => "project[name]"
       assert_select "input#project_repo", :name => "project[repo]"
       assert_select "textarea#project_description", :name => "project[description]"
-      assert_select "input#project_ruby_version", :name => "project[ruby_version]"
+      assert_select "select#project_ruby_id", :name => "project[ruby_id]"
     end
   end
 end

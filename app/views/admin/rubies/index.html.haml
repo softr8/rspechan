@@ -1,0 +1,21 @@
+%h1 Listing admin_rubies
+
+%table
+  %tr
+    %th Name
+    %th Status
+    %th
+    %th
+    %th
+
+  - @rubies.each do |ruby|
+    %tr
+      %td= ruby.name
+      %td= ruby.status
+      %td= link_to 'Show', admin_ruby_path(ruby)
+      %td= link_to 'Edit', edit_admin_ruby_path(ruby)
+      %td= link_to 'Destroy', admin_ruby_path(ruby), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Ruby', new_admin_ruby_path

@@ -11,5 +11,6 @@ FactoryGirl.define do
     name { FactoryGirl.generate(:project_name) }
     repo { FactoryGirl.generate(:repo_name) }
     organization_id 1
+    ruby_id  1
   end
 end

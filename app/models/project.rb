@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   has_many :builds
+  belongs_to :ruby
   belongs_to :organization
 
   validates_presence_of :repo

@@ -7,7 +7,7 @@ describe "projects/new" do
       :name => "MyString",
       :repo => "MyString",
       :description => "MyText",
-      :ruby_version => "MyString"
+      :ruby_id => 1
     ).as_new_record)
     assign(:organization, Organization.find_or_create_by_name(name: "Crowd Interactive"))
   end
@@ -19,7 +19,7 @@ describe "projects/new" do
       assert_select "input#project_name", :name => "project[name]"
       assert_select "input#project_repo", :name => "project[repo]"
       assert_select "textarea#project_description", :name => "project[description]"
-      assert_select "input#project_ruby_version", :name => "project[ruby_version]"
+      assert_select "select#project_ruby_id", :name => "project[ruby_id]"
     end
   end
 end

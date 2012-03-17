@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @ruby.name
+%p
+  %b Status:
+  = @ruby.status
+
+= link_to 'Edit', edit_admin_ruby_path(@ruby)
+\|
+= link_to 'Back', admin_rubies_path

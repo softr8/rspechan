@@ -5,8 +5,6 @@ class Node < ActiveRecord::Base
 
   after_create :enqueue_provisioning
 
-  default_scope where(['status = ?', "provisioned"])
-
   state_machine :status, initial: :enqueued do
     event :provisioned do
       transition enqueued: :provisioned
@@ -19,7 +17,7 @@ class Node < ActiveRecord::Base
 
   class << self
     def availables
-      Node.select(:ip).where('status = ?', 'available').map(&:ip)
+      Node.select(:ip).where('status = ?', 'provisioned').map(&:ip)
     end
   end
 

@@ -7,7 +7,6 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'ap'
-  require "#{Rails.root.join('db/seeds')}"
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
   Dir[Rails.root.join("spec/factories/**/*.rb")].each {|f| require f}
@@ -22,7 +21,8 @@ Spork.prefork do
     config.use_transactional_fixtures = true
     config.infer_base_class_for_anonymous_controllers = false
 
-    config.before(:each) do
+    config.before(:all) do
+      require "#{Rails.root.join('db/seeds')}"
     end
   end
 end
