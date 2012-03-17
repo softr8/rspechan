@@ -28,6 +28,7 @@ set :use_sudo,    false
 set :deploy_to,   "/home/#{user}/app_#{application}"
 
 set :scm, :git
+set :deploy_via,  :remote_cache
 
 set :rvm_ruby_string, "#{@project.ruby.name}@#{application}"
 set :rvm_type, :user
@@ -41,20 +42,21 @@ Dir["#{File.dirname(__FILE__)}/deploy/recipes/*.rb"].each { |fn| load fn }
 
 @nodes = Node.availables
 #role :web  # we dont want assets
-role :app, *@nodes #all nodes
-role :db,  *@nodes, :primary => true # Migrations are run un all nodes
+role :app, *@nodes  #all nodes
+role :db,  *@nodes, primary: true  # Migrations are run un all nodes
 
 after 'deploy:setup', 'deploy:custom:setup'
 
 namespace :build do
   task :default do
-    deploy.setup
     rvm.create_gemset
     rvm.install_bundler
+    deploy.setup
     deploy.update_code
-    deploy.symlink
+    deploy.create_symlink
     db.create rescue nil
     db.migrate
+    db.test_prepare
     utils.write_app_name
     #resque:enqueue_specs
     #resque:start_client
@@ -64,7 +66,7 @@ end
 namespace :provision do
   task :default, role: :app do
     rvm.install
-    rvm.install_ruby
+    rvm.install_all_rubies
   end
 end
 

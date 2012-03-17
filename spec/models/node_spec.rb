@@ -21,7 +21,7 @@ describe Node do
     end
     it "marks as provisioned if provisioning is a success" do
       node = Factory(:node)
-      node.provisioned
+      node.provisioned!
       node.status.should == 'provisioned'
     end
   end

@@ -7,7 +7,7 @@ class Node < ActiveRecord::Base
 
   state_machine :status, initial: :enqueued do
     event :provisioned do
-      transition enqueued: :provisioned
+      transition from: [:enqueued, :failed], to: :provisioned
     end
 
     event :failed do
