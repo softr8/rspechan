@@ -6,7 +6,7 @@ describe ProjectsController do
   # Project. As you add validations to Project, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { repo: "repo#{Time.zone.now.to_i}@github.com" }
+    { repo: "repo#{Time.zone.now.to_i}@github.com", organization_id: 1 }
   end
   
   # This should return the minimal set of values that should be in the session
@@ -16,25 +16,28 @@ describe ProjectsController do
     {}
   end
 
+  def default_attributes
+    { organization_id: 1}
+  end
   describe "GET index" do
     it "assigns all projects as @projects" do
       project = Project.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:projects).should eq([project])
+      get :index, default_attributes, valid_session
+      assigns(:projects).should include(project)
     end
   end
 
   describe "GET show" do
     it "assigns the requested project as @project" do
       project = Project.create! valid_attributes
-      get :show, {:id => project.to_param}, valid_session
+      get :show, default_attributes.merge({:id => project.to_param}), valid_session
       assigns(:project).should eq(project)
     end
   end
 
   describe "GET new" do
     it "assigns a new project as @project" do
-      get :new, {}, valid_session
+      get :new, default_attributes, valid_session
       assigns(:project).should be_a_new(Project)
     end
   end
@@ -42,7 +45,7 @@ describe ProjectsController do
   describe "GET edit" do
     it "assigns the requested project as @project" do
       project = Project.create! valid_attributes
-      get :edit, {:id => project.to_param}, valid_session
+      get :edit, default_attributes.merge({:id => project.to_param}), valid_session
       assigns(:project).should eq(project)
     end
   end
@@ -51,19 +54,19 @@ describe ProjectsController do
     describe "with valid params" do
       it "creates a new Project" do
         expect {
-          post :create, {:project => valid_attributes}, valid_session
+          post :create, default_attributes.merge({:project => valid_attributes}), valid_session
         }.to change(Project, :count).by(1)
       end
 
       it "assigns a newly created project as @project" do
-        post :create, {:project => valid_attributes}, valid_session
+        post :create, default_attributes.merge({:project => valid_attributes}), valid_session
         assigns(:project).should be_a(Project)
         assigns(:project).should be_persisted
       end
 
       it "redirects to the created project" do
-        post :create, {:project => valid_attributes}, valid_session
-        response.should redirect_to(Project.last)
+        post :create, default_attributes.merge({:project => valid_attributes}), valid_session
+        response.should redirect_to(organization_projects_path(1))
       end
     end
 
@@ -93,19 +96,19 @@ describe ProjectsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Project.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => project.to_param, :project => {'these' => 'params'}}, valid_session
+        put :update, default_attributes.merge({:id => project.to_param, :project => {'these' => 'params'}}), valid_session
       end
 
       it "assigns the requested project as @project" do
         project = Project.create! valid_attributes
-        put :update, {:id => project.to_param, :project => valid_attributes}, valid_session
+        put :update, default_attributes.merge({:id => project.to_param, :project => valid_attributes}), valid_session
         assigns(:project).should eq(project)
       end
 
       it "redirects to the project" do
         project = Project.create! valid_attributes
-        put :update, {:id => project.to_param, :project => valid_attributes}, valid_session
-        response.should redirect_to(project)
+        put :update, default_attributes.merge({:id => project.to_param, :project => valid_attributes}), valid_session
+        response.should redirect_to(organization_projects_path(project))
       end
     end
 
@@ -114,7 +117,7 @@ describe ProjectsController do
         project = Project.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
-        put :update, {:id => project.to_param, :project => {}}, valid_session
+        put :update, default_attributes.merge({:id => project.to_param, :project => {}}), valid_session
         assigns(:project).should eq(project)
       end
 
@@ -122,7 +125,7 @@ describe ProjectsController do
         project = Project.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
-        put :update, {:id => project.to_param, :project => {}}, valid_session
+        put :update, default_attributes.merge({:id => project.to_param, :project => {}}), valid_session
         response.should render_template("edit")
       end
     end
@@ -132,14 +135,14 @@ describe ProjectsController do
     it "destroys the requested project" do
       project = Project.create! valid_attributes
       expect {
-        delete :destroy, {:id => project.to_param}, valid_session
+        delete :destroy, default_attributes.merge({:id => project.to_param}), valid_session
       }.to change(Project, :count).by(-1)
     end
 
     it "redirects to the projects list" do
       project = Project.create! valid_attributes
-      delete :destroy, {:id => project.to_param}, valid_session
-      response.should redirect_to(projects_url)
+      delete :destroy, default_attributes.merge({:id => project.to_param}), valid_session
+      response.should redirect_to(root_url)
     end
   end
 

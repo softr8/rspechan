@@ -10,4 +10,4 @@
   <%= @build.project_id %>
 </p>
 
-<%= link_to 'Back', project_builds_path(project_id: @build.project_id) %>
+<%= link_to 'Back', organization_project_builds_path(organization_id: OrganizationHelper.default_id, project_id: @build.project_id) %>

@@ -4,31 +4,31 @@ describe ProjectsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/projects").should route_to("projects#index")
+      get("/organizations/1/projects").should route_to("projects#index", organization_id: "1")
     end
 
     it "routes to #new" do
-      get("/projects/new").should route_to("projects#new")
+      get("/organizations/1/projects/new").should route_to("projects#new", organization_id: "1")
     end
 
     it "routes to #show" do
-      get("/projects/1").should route_to("projects#show", :id => "1")
+      get("/organizations/1/projects/1").should route_to("projects#show", organization_id: "1", :id => "1")
     end
 
     it "routes to #edit" do
-      get("/projects/1/edit").should route_to("projects#edit", :id => "1")
+      get("/organizations/1/projects/1/edit").should route_to("projects#edit", organization_id: "1", :id => "1")
     end
 
     it "routes to #create" do
-      post("/projects").should route_to("projects#create")
+      post("/organizations/1/projects").should route_to("projects#create", organization_id: "1")
     end
 
     it "routes to #update" do
-      put("/projects/1").should route_to("projects#update", :id => "1")
+      put("/organizations/1/projects/1").should route_to("projects#update", organization_id: "1", :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/projects/1").should route_to("projects#destroy", :id => "1")
+      delete("/organizations/1/projects/1").should route_to("projects#destroy", organization_id: "1", :id => "1")
     end
 
   end

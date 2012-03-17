@@ -1,12 +1,15 @@
 Rspechan::Application.routes.draw do
   resources :nodes
 
-  resources :projects do
-    resources :builds, only: [:index, :show] do
-      collection do
-        get 'enqueue'
+  resources :organizations do
+    resources :projects do
+      resources :builds, only: [:index, :show] do
+        collection do
+          get 'enqueue'
+        end
       end
     end
+    match '/', to: 'dashboard#index'
   end
 
 
@@ -59,7 +62,7 @@ Rspechan::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'dashboard#index'
+  root to: 'dashboard#index'
 
   # See how all your routes lay out with "rake routes"
 

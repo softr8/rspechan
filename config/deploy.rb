@@ -44,6 +44,7 @@ after 'deploy:setup', 'deploy:custom:setup'
 
 namespace :build do
   task :default do
+    deploy.setup
     rvm.create_gemset
     rvm.install_bundler
     deploy.update_code
@@ -57,12 +58,9 @@ namespace :build do
 end
 
 namespace :provision do
-  task :default, role: :ap do
+  task :default, role: :app do
     rvm.install
     rvm.install_ruby
-    rvm.install_bundler rescue nil
-    rvm.create_gemset
-    deploy.setup
   end
 end
 

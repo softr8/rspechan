@@ -8,7 +8,7 @@
   - @feeds.each do |project|
     %tr
       %td= project.name
-      %td= project.last_build.state.to_s.titleize
-      %td= link_to 'Show', project_path(project)
-      %td= link_to 'BUILD', enqueue_project_builds_path(project)
+      %td= (project.last_build.try(:state) || 'N/A').titleize
+      %td= link_to 'Show', organization_project_path(OrganizationHelper.default_id, project.id)
+      %td= link_to 'BUILD', enqueue_organization_project_builds_path(OrganizationHelper.default_id, project.id)
 %br/

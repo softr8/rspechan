@@ -34,7 +34,7 @@ class BuildsController < ApplicationController
 
   def enqueue
     Build.create(project_id: params[:project_id])
-    redirect_to :root
+    redirect_to organization_path(OrganizationHelper.default_id)
   end
 
 

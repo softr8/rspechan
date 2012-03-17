@@ -23,12 +23,16 @@ end
 group :development, :test do
   gem 'autotest-rails'
   gem 'autotest-growl'
+  gem 'awesome_print', require: 'ap'
   gem 'factory_girl'
   gem 'foreman'
   gem 'rspec-rails'
   gem 'spork'
 end
 
+group :test do
+  gem 'resque_spec'
+end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

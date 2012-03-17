@@ -13,7 +13,7 @@
   <tr>
     <td><%= build.state %></td>
     <td><%= build.project_id %></td>
-    <td><%= link_to 'Show', project_build_path(project_id: build.project_id, id: build.id) %></td>
+    <td><%= link_to 'Show', organization_project_build_path(organization_id: OrganizationHelper.default_id, project_id: build.project_id, id: build.id) %></td>
   </tr>
 <% end %>
 </table>

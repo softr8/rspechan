@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "projects/index" do
   before(:each) do
+    OrganizationHelper.default_id = 1
     assign(:projects, [
       stub_model(Project,
         :name => "Name",

@@ -3,11 +3,14 @@ require 'spec_helper'
 describe "projects/show" do
   before(:each) do
     @project = assign(:project, stub_model(Project,
-      :name => "Name",
-      :repo => "Repo",
-      :description => "MyText",
-      :ruby_version => "Ruby Version"
+      id: 1,
+      name: "Name",
+      repo: "Repo",
+      description: "MyText",
+      ruby_version: "Ruby Version"
     ))
+    OrganizationHelper.default_id = 1
+
   end
 
   it "renders attributes in <p>" do

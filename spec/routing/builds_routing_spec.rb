@@ -4,11 +4,11 @@ describe BuildsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/projects/1/builds").should route_to("builds#index", project_id: "1")
+      get("/organizations/1/projects/1/builds").should route_to("builds#index", organization_id: "1", project_id: "1")
     end
 
     it "routes to #show" do
-      get("/projects/1/builds/1").should route_to("builds#show", id: "1", project_id: "1")
+      get("/organizations/1/projects/1/builds/1").should route_to("builds#show", organization_id: "1", id: "1", project_id: "1")
     end
 
   end

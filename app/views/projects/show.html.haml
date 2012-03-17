@@ -1,7 +1,7 @@
 %span12
-  = link_to 'Edit', edit_project_path(@project)
+  = link_to 'Edit', edit_organization_project_path(OrganizationHelper.default_id, @project.id)
   |
-  \#{link_to 'Back', projects_path}
+  \#{link_to 'Back', organization_projects_path(OrganizationHelper.default_id)}
 %p#notice= notice
 %p
   %b Name:
@@ -15,9 +15,9 @@
 %p
   %b Ruby version:
   = @project.ruby_version
-= link_to 'Edit', edit_project_path(@project)
+= link_to 'Edit', edit_organization_project_path(OrganizationHelper.default_id, @project.id)
 |
-\#{link_to 'Back', projects_path}
+\#{link_to 'Back', organization_projects_path(OrganizationHelper.default_id)}
 
 %h1 Last Bulds
 %table{class: 'table table-bordered table-striped'}
@@ -29,6 +29,6 @@
     %tr
       %td= build.created_at
       %td= build.state
-      %td= link_to 'Show', project_builds_path(project_id: @project.id)
+      %td= link_to 'Show', organization_project_builds_path(organization_id: OrganizationHelper.default_id, project_id: @project.id)
 %br/
-= link_to 'New Project', new_project_path
+= link_to 'New Project', new_organization_project_path(OrganizationHelper.default_id)

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DashboardController do
+describe "Dashboard" do
   let(:project1) { Factory(:project, repo: "repo#{Time.zone.now.to_i}@git.com") }
   let(:project2) { Factory(:project, repo: "repo#{Time.zone.now.to_i + 1}@git.com") }
 
@@ -13,10 +13,10 @@ describe DashboardController do
     Factory(:project, repo: "repo#{Time.zone.now.to_i + 2}@git.com")
   end
 
-  describe "#index" do
-    it "returns last build per project" do
-      get :index, { organization_id: 1 }
-      assigns(:feeds).size.should == 3
+  describe "GET /organizations/1" do
+    it "returns all current projects" do
+      get organization_projects_path(1)
+      response.status.should be(200)
     end
   end
 end
