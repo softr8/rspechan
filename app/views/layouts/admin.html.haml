@@ -14,5 +14,8 @@
     .container
       .container-fluid
         .row-fluid
+          .span2
+            %h3= link_to 'Nodes', admin_nodes_path
+            %h3= link_to 'Rubies', admin_rubies_path
           .span10
             = yield

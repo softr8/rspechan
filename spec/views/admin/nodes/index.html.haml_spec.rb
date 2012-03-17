@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "nodes/index" do
+describe "admin/nodes/index" do
   before(:each) do
     assign(:nodes, [
       stub_model(Node,

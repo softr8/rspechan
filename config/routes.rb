@@ -1,7 +1,9 @@
 Rspechan::Application.routes.draw do
-  namespace :admin do resources :rubies end
-
-  resources :nodes
+  namespace :admin do
+    resources :rubies
+    resources :nodes
+    match '/', to: 'nodes#index'
+  end
 
   resources :organizations do
     resources :projects do

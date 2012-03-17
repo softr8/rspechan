@@ -1,5 +1,4 @@
-class Admin::RubiesController < ApplicationController
-  layout 'admin'
+class Admin::RubiesController < Admin::BaseController
 
   # GET /admin/rubies
   # GET /admin/rubies.json
@@ -75,7 +74,7 @@ class Admin::RubiesController < ApplicationController
   # DELETE /admin/rubies/1.json
   def destroy
     @ruby = Ruby.find(params[:id])
-    @ruby.destroy
+    @ruby.deactivate
 
     respond_to do |format|
       format.html { redirect_to admin_rubies_url }

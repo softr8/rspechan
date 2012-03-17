@@ -20,6 +20,5 @@
             - @active_projects.each do |p|
               %li= p.name #link_to p.name, organization_project_path(@organization.id, project_id: p.id)
             %h3= link_to 'New Project', new_organization_project_path(organization_id: OrganizationHelper.default_id)
-            %h3= link_to 'Nodes', nodes_path
           .span10
             = yield

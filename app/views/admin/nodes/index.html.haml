@@ -16,10 +16,10 @@
       %td= node.ip
       %td= node.status
       %td= node.max_workers
-      %td= link_to 'Show', node
-      %td= link_to 'Edit', edit_node_path(node)
-      %td= link_to 'Destroy', node, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Show', admin_node_path(node)
+      %td= link_to 'Edit', edit_admin_node_path(node)
+      %td= link_to 'Destroy', admin_node_path(node), :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Node', new_node_path
+= link_to 'New Node', new_admin_node_path

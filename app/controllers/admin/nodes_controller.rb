@@ -1,4 +1,4 @@
-class NodesController < ApplicationController
+class Admin::NodesController < Admin::BaseController
   # GET /nodes
   # GET /nodes.json
   def index
@@ -44,7 +44,7 @@ class NodesController < ApplicationController
 
     respond_to do |format|
       if @node.save
-        format.html { redirect_to @node, notice: 'Node was successfully created.' }
+        format.html { redirect_to admin_node_path(@node), notice: 'Node was successfully created.' }
         format.json { render json: @node, status: :created, location: @node }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class NodesController < ApplicationController
 
     respond_to do |format|
       if @node.update_attributes(params[:node])
-        format.html { redirect_to @node, notice: 'Node was successfully updated.' }
+        format.html { redirect_to admin_node_path(@node), notice: 'Node was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class NodesController < ApplicationController
     @node.destroy
 
     respond_to do |format|
-      format.html { redirect_to nodes_url }
+      format.html { redirect_to admin_nodes_url }
       format.json { head :no_content }
     end
   end

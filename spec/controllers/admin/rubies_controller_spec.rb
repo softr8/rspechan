@@ -149,9 +149,8 @@ describe Admin::RubiesController do
   describe "DELETE destroy" do
     it "destroys the requested ruby" do
       ruby = Ruby.create! valid_attributes
-      expect {
-        delete :destroy, {:id => ruby.to_param}, valid_session
-      }.to change(Ruby, :count).by(-1)
+      delete :destroy, {:id => ruby.to_param}, valid_session
+      ruby.reload.status.should == 'deactivated'
     end
 
     it "redirects to the admin_rubies list" do

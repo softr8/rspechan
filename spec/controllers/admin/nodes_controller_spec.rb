@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe NodesController do
+describe Admin::NodesController do
 
   # This should return the minimal set of attributes required to create a valid
   # Node. As you add validations to Node, be sure to
@@ -81,7 +81,7 @@ describe NodesController do
 
       it "redirects to the created node" do
         post :create, {:node => valid_attributes}, valid_session
-        response.should redirect_to(Node.last)
+        response.should redirect_to(admin_node_path(Node.last))
       end
     end
 
@@ -123,7 +123,7 @@ describe NodesController do
       it "redirects to the node" do
         node = Node.create! valid_attributes
         put :update, {:id => node.to_param, :node => valid_attributes}, valid_session
-        response.should redirect_to(node)
+        response.should redirect_to(admin_node_path(node))
       end
     end
 
@@ -157,7 +157,7 @@ describe NodesController do
     it "redirects to the nodes list" do
       node = Node.create! valid_attributes
       delete :destroy, {:id => node.to_param}, valid_session
-      response.should redirect_to(nodes_url)
+      response.should redirect_to(admin_nodes_url)
     end
   end
 

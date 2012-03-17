@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "nodes/new" do
+describe "admin/nodes/new" do
   before(:each) do
     assign(:node, stub_model(Node,
       :name => "MyString",
@@ -14,7 +14,7 @@ describe "nodes/new" do
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "form", :action => nodes_path, :method => "post" do
+    assert_select "form", :action => admin_nodes_path, :method => "post" do
       assert_select "input#node_name", :name => "node[name]"
       assert_select "input#node_ip", :name => "node[ip]"
       assert_select "input#node_status", :name => "node[status]"

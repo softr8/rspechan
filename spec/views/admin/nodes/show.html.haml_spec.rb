@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "nodes/show" do
+describe "admin/nodes/show" do
   before(:each) do
     @node = assign(:node, stub_model(Node,
       :name => "Name",
