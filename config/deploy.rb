@@ -5,6 +5,7 @@ require 'active_support/all'
 require 'active_record'
 require 'state_machine'
 
+require "#{File.dirname(__FILE__)}/../lib/organization_helper"
 
 Dir["#{File.dirname(__FILE__)}/deploy/support/*.rb"].each { |fn| require fn }
 Dir["#{File.dirname(__FILE__)}/../app/models/*.rb"].each { |fn| require fn }
@@ -12,7 +13,10 @@ Dir["#{File.dirname(__FILE__)}/../app/models/*.rb"].each { |fn| require fn }
 require "rvm/capistrano"
 require "bundler/capistrano"
 
-_cset :project_id, 0
+_cset :project_id, 1
+_cset :organization_id, 1
+
+OrganizationHelper.default_id = organization_id
 @project = Project.find_by_id(project_id)
 raise "PROJECT NOT FOUND #{project_id}" unless @project
 
@@ -25,7 +29,7 @@ set :deploy_to,   "/home/#{user}/app_#{application}"
 
 set :scm, :git
 
-set :rvm_ruby_string, @project.ruby_version
+set :rvm_ruby_string, "#{@project.ruby.name}@#{application}"
 set :rvm_type, :user
 
 

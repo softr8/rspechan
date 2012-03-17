@@ -41,4 +41,13 @@ namespace :rvm do
     set :rvm_ruby_string, tmp_ruby_string
     #run "rvm --create #{ruby_version}@#{gemset_name}"
   end
+
+  task :install_all_rubies do
+    rubies = Ruby.availables
+    rubies.each do |ruby|
+      set :rvm_ruby_string, ''
+      run "RUBY_INSTALLED=`rvm list | grep '#{ruby.name}'` ; if [ -z \"$RUBY_INSTALLED\" ]; then rvm install #{ruby.name} ; fi"
+      set :rvm_ruby_string, tmp_ruby_string
+    end
+  end
 end

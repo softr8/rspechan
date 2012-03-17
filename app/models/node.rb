@@ -23,6 +23,6 @@ class Node < ActiveRecord::Base
 
   private
   def enqueue_provisioning
-    Resque.enqueue Async::Provision, ip
+    Resque.enqueue Async::Provision, self.id
   end
 end

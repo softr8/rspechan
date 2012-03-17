@@ -4,7 +4,7 @@ describe Node do
   describe "#create" do
     it "enqueues new node provision" do
       node = Factory(:node)
-      Async::Provision.should have_queued(node.ip)
+      Async::Provision.should have_queued(node.id)
     end
   end
 

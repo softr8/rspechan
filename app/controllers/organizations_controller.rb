@@ -1,2 +1,2 @@
-class OrganizationsController < ApplicationController
+class OrganizationsController < BaseController
 end

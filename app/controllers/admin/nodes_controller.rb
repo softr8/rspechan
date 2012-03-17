@@ -80,4 +80,10 @@ class Admin::NodesController < Admin::BaseController
       format.json { head :no_content }
     end
   end
+
+  def provision
+    Resque.enqueue Async::Provision, params[:node_id]
+    flash[:message] = 'This node has been enqueued for new provisioning'
+    redirect_to action: :index
+  end
 end

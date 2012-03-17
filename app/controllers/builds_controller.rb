@@ -1,4 +1,4 @@
-class BuildsController < ApplicationController
+class BuildsController < BaseController
   # GET /builds
   # GET /builds.json
   def index

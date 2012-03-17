@@ -161,4 +161,11 @@ describe Admin::NodesController do
     end
   end
 
+  describe "GET provision" do
+    it "enqueues provisioning procedure for current node" do
+      get :provision, node_id: 1
+      Async::Provision.should have_queued("1")
+    end
+  end
+
 end
