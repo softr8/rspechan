@@ -14,12 +14,12 @@
   = @project.description
 %p
   %b Ruby version:
-  = @project.ruby_version
+  = @project.ruby.name
 = link_to 'Edit', edit_organization_project_path(OrganizationHelper.default_id, @project.id)
 |
 \#{link_to 'Back', organization_projects_path(OrganizationHelper.default_id)}
 
-%h1 Last Bulds
+%h1 Latest Builds
 %table{class: 'table table-bordered table-striped'}
   %tr
     %th Date
