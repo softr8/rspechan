@@ -8,6 +8,7 @@ gem "haml-rails"
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'resque'
+gem 'rspechan_worker', git: 'git@github.com:crowdint/rspechan_worker.git'
 gem 'rvm'
 gem 'state_machine'
 gem 'unicorn'

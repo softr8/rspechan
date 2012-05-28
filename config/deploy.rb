@@ -44,6 +44,9 @@ Dir["#{File.dirname(__FILE__)}/deploy/recipes/*.rb"].each { |fn| load fn }
 #role :web  # we dont want assets
 role :app, *@nodes  #all nodes
 role :db,  *@nodes, primary: true  # Migrations are run un all nodes
+role :resque_master,  @nodes.first
+
+set :redis_hostname, @nodes.first
 
 after 'deploy:setup', 'deploy:custom:setup'
 
@@ -54,11 +57,12 @@ namespace :build do
     deploy.setup
     deploy.update_code
     deploy.create_symlink
+    db.symlink
     db.create rescue nil
     db.migrate
     db.test_prepare
     utils.write_app_name
-    #resque:enqueue_specs
+    resque.enqueue_specs
     #resque:start_client
   end
 end
