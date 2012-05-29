@@ -1,1 +1,1 @@
-Resque.redis.namespace = "rspechan:core"
+Resque.redis.namespace = "rspechan"

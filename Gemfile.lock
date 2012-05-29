@@ -1,9 +1,10 @@
 GIT
   remote: git@github.com:crowdint/rspechan_worker.git
-  revision: 7ca8586c457e2a813298b1daa7e2918b6af89d1d
+  revision: e539bbf53e71de2830b105877165cb00991cf760
   specs:
     rspechan_worker (0.0.1)
       resque
+      typhoeus
 
 GEM
   remote: https://rubygems.org/
@@ -174,6 +175,8 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
+    typhoeus (0.3.3)
+      mime-types
     tzinfo (0.3.32)
     uglifier (1.2.3)
       execjs (>= 0.3.0)

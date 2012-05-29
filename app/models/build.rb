@@ -18,6 +18,6 @@ class Build < ActiveRecord::Base
 
   private
   def enqueue_build
-    Resque.enqueue Async::Deploy, project.id, self.id
+    Resque.enqueue Async::Deploy, {project_id: project.id, build_id: self.id, organization_id: OrganizationHelper.default_id }
   end
 end

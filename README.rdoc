@@ -11,3 +11,9 @@ When coding new features and fixing my bugs, just start foreman and you're all s
 * If you're using rubymine, be sure to specify rubymine home in your .bashrc/.bash_profile:
 
     export RUBYMINE_HOME=/Users/user/RubyMine\ EAP.app/
+
+== TODO
+* Create plugins
+  * Database's
+  * Solr?
+* Define where common redis server is going to reside
