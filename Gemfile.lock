@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:crowdint/rspechan_worker.git
-  revision: 9407ac06e21c068556807b4bbf538dd929c48ee0
+  revision: 7ca8586c457e2a813298b1daa7e2918b6af89d1d
   specs:
     rspechan_worker (0.0.1)
       resque

@@ -36,6 +36,7 @@ set :rvm_type, :user
 
 set :bundle_without, []
 set :bundle_flags, ''
+set :db_type, 'sqlite3'
 
 Dir["#{File.dirname(__FILE__)}/deploy/recipes/*.rb"].each { |fn| load fn }
 
@@ -49,6 +50,7 @@ role :resque_master,  @nodes.first
 set :redis_hostname, @nodes.first
 
 after 'deploy:setup', 'deploy:custom:setup'
+before "deploy:finalize_update", "db:sanitize_gemfile"
 
 namespace :build do
   task :default do

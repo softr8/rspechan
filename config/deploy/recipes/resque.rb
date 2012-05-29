@@ -1,7 +1,7 @@
 namespace :resque do
   desc 'enqueues all specs'
   task :enqueue_specs, role: :resque_master do
-    run "cd #{current_release} && REDIS_HOSTNAME=#{redis_hostname} bundle exec rake resque:enqueue_specs"
+    run "cd #{current_release} && REDIS_HOSTNAME=#{redis_hostname} bundle exec rake rspechan:enqueue_specs --trace"
   end
 
   task :start_workers, role: :app do
