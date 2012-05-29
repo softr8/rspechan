@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120317211107) do
+ActiveRecord::Schema.define(:version => 20120528204433) do
 
   create_table "builds", :force => true do |t|
     t.string   "state"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120317211107) do
     t.string   "line"
     t.string   "spec"
     t.integer  "build_id"
+    t.string   "file_path"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
