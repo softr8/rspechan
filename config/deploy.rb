@@ -67,7 +67,7 @@ namespace :build do
     db.test_prepare
     utils.write_app_name
     resque.enqueue_specs
-    #resque:start_client
+    resque:start_client
   end
 end
 

@@ -17,3 +17,5 @@ When coding new features and fixing my bugs, just start foreman and you're all s
   * Database's
   * Solr?
 * Define where common redis server is going to reside
+* Add fulltrace to spec
+* Rename spec model

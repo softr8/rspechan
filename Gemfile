@@ -7,11 +7,14 @@ gem 'capistrano-ext'
 gem "haml-rails"
 gem 'jquery-rails'
 gem 'mysql2'
-gem 'resque'
+gem 'tr8sque', git: 'git@github.com:softr8/resque.git', branch: 'tr8sque'
+#gem 'tr8sque', path: '../tr8sque'
 gem 'rspechan_worker', git: 'git@github.com:crowdint/rspechan_worker.git'
+#gem 'rspechan_worker', path: '../rspechan_worker'
 gem 'rvm'
 gem 'state_machine'
 gem 'unicorn'
+gem 'resque'
 
 group :assets do
   gem 'bootstrap-sass', '~> 2.0.1'

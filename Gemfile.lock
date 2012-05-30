@@ -1,9 +1,19 @@
 GIT
-  remote: git@github.com:crowdint/rspechan_worker.git
-  revision: e539bbf53e71de2830b105877165cb00991cf760
+  remote: git@github.com:softr8/resque.git
+  revision: c3a1d2cea730d497f41fd661e5f480d1a382a521
+  branch: tr8sque
+  specs:
+    tr8sque (1.20.0)
+      multi_json (~> 1.0)
+      redis-namespace (~> 1.0.2)
+      sinatra (>= 0.9.2)
+      vegas (~> 0.1.2)
+
+PATH
+  remote: ../rspechan_worker
   specs:
     rspechan_worker (0.0.1)
-      resque
+      tr8sque
       typhoeus
 
 GEM
@@ -214,5 +224,6 @@ DEPENDENCIES
   spork
   state_machine
   therubyracer
+  tr8sque!
   uglifier (>= 1.0.3)
   unicorn

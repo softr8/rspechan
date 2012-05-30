@@ -1,0 +1,13 @@
+
+= link_to 'Back', organization_project_builds_path(organization_id: OrganizationHelper.default_id, project_id: @build.project_id)
+
+%h1 Listing Erros
+%table{class: 'table table-bordered table-striped'}
+  %tr
+    %th Description
+    %th Exception
+  - @build.specs.each do |spec|
+    %tr
+      %td= spec.description
+      %td= spec.exception
+%br/

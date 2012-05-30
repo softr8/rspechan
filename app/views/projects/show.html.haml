@@ -29,6 +29,6 @@
     %tr
       %td= build.created_at
       %td= build.state
-      %td= link_to 'Show', organization_project_builds_path(organization_id: OrganizationHelper.default_id, project_id: @project.id)
+      %td= link_to 'Show', organization_project_build_path(organization_id: OrganizationHelper.default_id, project_id: @project.id, id: build.id)
 %br/
 = link_to 'New Project', new_organization_project_path(OrganizationHelper.default_id)

@@ -5,6 +5,6 @@ namespace :resque do
   end
 
   task :start_workers, role: :app do
-    run "cd #{current_release} && RAILS_ENV=test QUEUE=#{application}_queue APPLICATION_NAME=#{application} REDIS_HOSTNAME=#{redis_hostname} BUILD_ID=#{build_id} DUMP_FAILURES_URL=#{main_app_url}  bundle exec rake environment resque:work 2>&1 >> #{shared_path}/log/resque_workers.log &"
+    run "cd #{current_release} && RAILS_ENV=test QUEUE=queue_#{application} APPLICATION_NAME=#{application} REDIS_HOSTNAME=#{redis_hostname} BUILD_ID=#{build_id} DUMP_FAILURES_URL=#{main_app_url}  bundle exec rake environment tr8sque:work 2>&1 >> #{shared_path}/log/tr8sque_workers.log &"
   end
 end
