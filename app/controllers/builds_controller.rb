@@ -37,5 +37,10 @@ class BuildsController < BaseController
     redirect_to organization_path(OrganizationHelper.default_id)
   end
 
+  def finish_build
+    build = Build.find_by_id(params[:id])
+    build.finished
+    respond_with :ok
+  end
 
 end

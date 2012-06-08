@@ -1,23 +1,36 @@
 class Build < ActiveRecord::Base
   belongs_to :project
-  has_many :specs
+  has_many :spec_tests
 
   delegate :name, to: :project, prefix: :project
 
   after_create :enqueue_build
 
   state_machine :state, initial: :enqueued do
+
+    before_transition all => [:failed, :finished], do: :update_finished_at
+    #before_transition [:failed, :finished], do: :update_finished_at
+
     event :deployed do
-      transition enqueued: :deployed
+      transition from: :enqueued, to: :deployed
+    end
+
+    event :finished do
+      transition from: :deployed, to: :finished
     end
 
     event :failed do
-      transition all: :failed
+      transition from: :deployed, to: :failed
     end
+
   end
 
   private
   def enqueue_build
     Resque.enqueue Async::Deploy, {project_id: project.id, build_id: self.id, organization_id: OrganizationHelper.default_id }
+  end
+
+  def update_finished_at
+    self.finished_at = Time.zone.now
   end
 end

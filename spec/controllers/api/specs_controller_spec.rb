@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Api::SpecsController, '#create_failures' do
+  let(:build) { Factory.create(:build) }
   let(:valid_params) {
     {
         :specs => [
@@ -20,14 +21,24 @@ describe Api::SpecsController, '#create_failures' do
                 :spec => "RSpec::Formatters::RspechanFormatter#example_failed awesome unicorns",
                 :line => 9
             }
-        ].to_json
+        ].to_json,
+        :build_id => build.id
     }
   }
+
+  before do
+    build.deployed
+  end
 
   it 'creates specs records' do
     expect {
       post :create_failures, valid_params
-    }.to change(Spec, :count).by(2)
+    }.to change(SpecTest, :count).by(2)
+  end
+
+  it 'marks as failed the build' do
+    post :create_failures, valid_params
+    build.reload.state.should == "failed"
   end
 
 end

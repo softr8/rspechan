@@ -6,7 +6,7 @@
   %tr
     %th Description
     %th Exception
-  - @build.specs.each do |spec|
+  - @build.spec_tests.each do |spec|
     %tr
       %td= spec.description
       %td= spec.exception

@@ -9,7 +9,7 @@ describe Build do
     it "enqueues new deployment" do
       #Resque.should_receive(:enqueue).with Async::Deploy, project.id, anything
       build = Build.create(project_id: project.id)
-      Async::Deploy.should have_queued(project.id, build.id)
+      Async::Deploy.should have_queued(project_id: project.id, build_id: build.id, organization_id: OrganizationHelper.default_id )
     end
   end
 

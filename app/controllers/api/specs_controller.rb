@@ -4,9 +4,11 @@ class Api::SpecsController < BaseController
 
   def create_failures
     JSON.parse(params[:specs]).each do |failing_spec|
-      Spec.create(failing_spec)
+      SpecTest.create(failing_spec)
     end
 
+    build = Build.find_by_id(params[:build_id])
+    build.failed! if build
     render nothing: true
   end
 end
