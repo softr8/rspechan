@@ -20,7 +20,7 @@ class Build < ActiveRecord::Base
     end
 
     event :failed do
-      transition from: :deployed, to: :failed
+      transition from: [:enqueued, :deployed, :failed], to: :failed
     end
 
   end

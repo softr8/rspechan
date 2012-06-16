@@ -41,4 +41,10 @@ describe Api::SpecsController, '#create_failures' do
     build.reload.state.should == "failed"
   end
 
+  it 'keeps failed an already failed job' do
+    post :create_failures, valid_params
+    build.reload.state.should == "failed"
+    post :create_failures, valid_params
+    build.reload.state.should == "failed"
+  end
 end
