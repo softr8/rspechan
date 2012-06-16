@@ -8,7 +8,7 @@ module Async
       project_id = args.first["project_id"]
       build_id = args.first["build_id"]
       organization_id = args.first["organization_id"]
-      if system("cap build -sproject_id=#{project_id} -sbuild_id=#{build_id} -sorganization_id=#{organization_id}")
+      if system("cap build -Sproject_id=#{project_id} -Sbuild_id=#{build_id} -Sorganization_id=#{organization_id}")
         Build.find(args.second).deployed
       else
         Build.find(args.second).failed

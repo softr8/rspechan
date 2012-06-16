@@ -108,7 +108,7 @@ describe ProjectsController do
       it "redirects to the project" do
         project = Project.create! valid_attributes
         put :update, default_attributes.merge({:id => project.to_param, :project => valid_attributes}), valid_session
-        response.should redirect_to(organization_projects_path(project))
+        response.should redirect_to(organization_project_path(1, project.id))
       end
     end
 

@@ -7,3 +7,4 @@ require File.expand_path('../config/application', __FILE__)
 Rspechan::Application.load_tasks
 
 require 'tr8sque/tasks'
+require 'resque/tasks'

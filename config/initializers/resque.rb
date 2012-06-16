@@ -1,1 +1,1 @@
-Resque.redis.namespace = "rspechan"
+#Resque.redis.namespace = "rspechan"

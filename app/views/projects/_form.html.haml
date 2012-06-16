@@ -16,6 +16,18 @@
     %br/
     = f.text_field :repo
   .field
+    = f.label :branch
+    %br/
+    = f.text_field :branch
+  .field
+    = f.label :test_type
+    %br/
+    = f.select :test_type, {:rspec => 'Rspec', :cucumber => 'Cucumber'}
+  .field
+    = f.label :pattern
+    %br/
+    = f.text_field :pattern
+  .field
     = f.label :description
     %br/
     = f.text_area :description

@@ -14,7 +14,7 @@ namespace :rvm do
   desc "Installs rvm"
   task :install, :except => {:no_release => true} do
     set :rvm_ruby_string, ''
-    run "RVM=`rvm | grep 'RVM'` ; if [ -z \"$RVM\" ] ; then bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer) ; fi"
+    run "RVM=`rvm | grep 'RVM'` ; if [ -z \"$RVM\" ] ; then bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer) ; fi", shell: 'bash -l'
     set :rvm_ruby_string, tmp_ruby_string
   end
 

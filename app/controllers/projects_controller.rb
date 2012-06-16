@@ -60,7 +60,7 @@ class ProjectsController < BaseController
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
-        format.html { redirect_to organization_projects_path(@project), notice: 'Project was successfully updated.' }
+        format.html { redirect_to organization_project_path(OrganizationHelper.default_id, @project.id), notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

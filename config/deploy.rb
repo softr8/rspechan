@@ -18,12 +18,15 @@ _cset :organization_id, 1
 _cset :build_id, 1
 _cset :main_app_url, "http://33.33.33.1" #TODO, move this to an admin interface
 
+puts "#{project_id}, #{organization_id}, #{build_id}"
+
 OrganizationHelper.default_id = organization_id
 @project = Project.find_by_id(project_id)
 raise "PROJECT NOT FOUND #{project_id}" unless @project
 
 set :application, @project.name.gsub(' ', '_')
 set :repository,  @project.repo
+set :branch, @project.branch || 'master'
 set :user, 'rspechan'
 set :user, 'vagrant'
 set :use_sudo,    false
@@ -46,10 +49,11 @@ Dir["#{File.dirname(__FILE__)}/deploy/recipes/*.rb"].each { |fn| load fn }
 @nodes = Node.availables
 #role :web  # we dont want assets
 role :app, *@nodes  #all nodes
+set :num_workers, @nodes.count
 role :db,  *@nodes, primary: true  # Migrations are run un all nodes
 role :resque_master,  @nodes.first
 
-set :redis_hostname, @nodes.first
+set :redis_hostname, "#{@nodes.first}:6379"
 
 after 'deploy:setup', 'deploy:custom:setup'
 before "deploy:finalize_update", "db:sanitize_gemfile"
@@ -66,8 +70,8 @@ namespace :build do
     db.migrate
     db.test_prepare
     utils.write_app_name
-    resque.enqueue_specs
-    resque:start_client
+    tr8sque.enqueue_specs
+    tr8sque.start_workers
   end
 end
 
