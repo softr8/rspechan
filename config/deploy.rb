@@ -18,8 +18,6 @@ _cset :organization_id, 1
 _cset :build_id, 1
 _cset :main_app_url, "http://33.33.33.1" #TODO, move this to an admin interface
 
-puts "#{project_id}, #{organization_id}, #{build_id}"
-
 OrganizationHelper.default_id = organization_id
 @project = Project.find_by_id(project_id)
 raise "PROJECT NOT FOUND #{project_id}" unless @project
@@ -57,6 +55,7 @@ set :redis_hostname, "#{@nodes.first}:6379"
 
 after 'deploy:setup', 'deploy:custom:setup'
 before "deploy:finalize_update", "db:sanitize_gemfile"
+before "deploy:finalize_update", "rspechan:add_rspechan_tasks"
 
 namespace :build do
   task :default do
