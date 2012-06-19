@@ -24,7 +24,7 @@ Rspechan::Application.routes.draw do
         post :create_failures
       end
     end
-    resources :builds, only: [] do
+    resources :builds, only: [], to: 'builds' do
       collection do
         post :finish_build
       end

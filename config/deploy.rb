@@ -16,7 +16,7 @@ require "bundler/capistrano"
 _cset :project_id, 1
 _cset :organization_id, 1
 _cset :build_id, 1
-_cset :main_app_url, "http://33.33.33.1" #TODO, move this to an admin interface
+_cset :main_app_url, "http://33.33.33.1:3000" #TODO, move this to an admin interface
 
 OrganizationHelper.default_id = organization_id
 @project = Project.find_by_id(project_id)
@@ -64,6 +64,7 @@ namespace :build do
     deploy.setup
     deploy.update_code
     deploy.create_symlink
+    rspechan.mark_build_as_deployed
     db.symlink
     db.create rescue nil
     db.migrate

@@ -39,8 +39,7 @@ class BuildsController < BaseController
 
   def finish_build
     build = Build.find_by_id(params[:id])
-    build.finished
-    respond_with :ok
+    head status: build.finished! ? :ok : :unprocessable_entity
   end
 
 end

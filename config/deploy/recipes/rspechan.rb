@@ -9,4 +9,8 @@ namespace :rspechan do
     }
     run "cd #{current_release} && #{concatenates.collect {|key, value| "echo \"#{key}\" >> #{value}"}.join(' && ')}"
   end
+
+  task :mark_build_as_deployed do
+    Build.find(build_id).deployed
+  end
 end

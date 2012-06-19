@@ -15,12 +15,16 @@ class Build < ActiveRecord::Base
       transition from: :enqueued, to: :deployed
     end
 
+    event :building do
+      transition from: :deployed, to: :building
+    end
+
     event :finished do
-      transition from: :deployed, to: :finished
+      transition from: [:building, :finished], to: :finished
     end
 
     event :failed do
-      transition from: [:enqueued, :deployed, :failed], to: :failed
+      transition from: [:enqueued, :building, :deployed, :failed], to: :failed
     end
 
   end
